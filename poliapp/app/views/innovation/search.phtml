@@ -1,0 +1,95 @@
+<?php
+  /**
+   * @var \Phalcon\Mvc\View\Engine\Php $this
+   */
+  ?>
+<?php use Phalcon\Tag; ?>
+
+<style>
+ table {
+  table-layout: fixed;
+  width: 100%;
+  }
+  td {
+  }
+
+</style>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+    <?php echo $this->getContent(); ?>
+    </div>
+    <div class="col-md-12 col-sm-12">
+    
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Innovaciones</h4>
+          <hr>
+          <?php
+          echo $this->tag->linkTo(array('innovation/new', "<i class='fas fa-plus-circle' style='color:green'>Crear nueva</i>"));
+          ?>       
+         
+        </div>
+        
+        <div class="content  ">
+          
+        <table class="table table-hover">
+            <thead>
+              <tr class="info">
+                <th  class="text-center">#</th>
+                <th  class="text-center">Profesor</th>
+                <th  class="text-center">Innovación</th>
+                <th  class="text-center">Beneficiario</th>
+                <th  class="text-center">Aplicación/Uso</th>
+                <th  class="text-center">Año</th>
+                <th  class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($page->items as $innovation): ?>
+              <tr>
+                <td class="text-center"><?php echo $innovation->id ?></td>
+                <td class="text-center"><?php echo $innovation->Person->name ?></td>
+                <td class="text-center"><?php echo $innovation->name ?></td>              
+                <td class="text-center"><?php echo $innovation->Entity->name?></td>
+                <td class="text-center"><?php echo $innovation->description?></td>
+                <td class="text-center"><?php echo date("Y-m-d", strtotime($innovation->date)) ?></td>                
+                <td class="text-center">
+                  <?php echo $this->tag->linkTo(["innovation/edit/" . $innovation->id, "Editar"]); ?>
+                </td>
+              </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col-sm-1">
+              <p class="pagination" style="line-height: 1.42857;padding: 6px 12px;">
+                <?php echo $page->current, "/", $page->total_pages ?>
+              </p>
+            </div>
+            <div class="col-sm-11">
+              <nav>
+                <ul class="pagination">
+                  <li>
+                    <?php echo $this->tag->linkTo("innovation/search", "Primero") ?>
+                  </li>
+                  <li>
+                    <?php echo $this->tag->linkTo("innovation/search?page=" . $page->before, "Anterior") ?>
+                  </li>
+                  <li>
+                    <?php echo $this->tag->linkTo("innovation/search?page=" . $page->next, "Siguiente") ?>
+                  </li>
+                  <li>
+                    <?php echo $this->tag->linkTo("innovation/search?page=" . $page->last, "Último") ?>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

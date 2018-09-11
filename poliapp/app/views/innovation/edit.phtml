@@ -1,0 +1,104 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="card">
+        <div class="header">
+            <nav>
+            <ul class="pager">
+            <li class="previous"><?php echo $this->tag->linkTo(["innovation/search", "Regresar"]) ?></li>
+            </ul>
+            </nav>
+          <h4 class="title">Editar Innovación</h4>
+          <hr>
+         
+        </div>
+        
+        <div class="content ">
+
+<?php echo $this->getContent(); ?>
+
+<?php
+    echo $this->tag->form(
+        [
+            "innovation/save",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        ]
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldName" class="col-sm-2 control-label">Nombre de la innovación</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["name", "size" => 30, "class" => "form-control", "id" => "fieldName"]) ?>
+    </div>
+</div>
+
+ <div class="form-group">
+        <label for="fieldPerson" class="col-sm-2 control-label">Profesor</label>
+        <div class="col-sm-10">
+            <?php 
+		    echo $this->tag->select(array("id_performed_by",
+		                                    		Person::find('id_role = 1'),
+		                                    		"class"=> "form-control",
+		                                    		"id"=>"fieldIdPerson",
+		                                    		"useEmpty"  =>  true,
+		                                    		"emptyText" =>  "Seleccione un profesor",
+		                                    		"using" => array("id", "name"),));
+    
+             ?>
+        </div>
+</div>
+
+ <div class="form-group">
+        <label for="fildEntity" class="col-sm-2 control-label">Entidad beneficiaria</label>
+        <div class="col-sm-10">
+            <?php 
+		    echo $this->tag->select(array("id_beneficiary_entity",
+		                                    		Entity::find(),
+		                                    		"class"=> "form-control",
+		                                    		"id"=>"fieldIdEntity",
+		                                    		"useEmpty"  =>  true,
+		                                    		"emptyText" =>  "Seleccione una entidad",
+		                                    		"using" => array("id", "name"),));
+    
+             ?>
+        </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldDescription" class="col-sm-2 control-label">Aplicación / Uso</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textArea(["description", "size" => 30, "class" => "form-control", "id" => "fieldDescription" , "style"=>"resize:none"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldDate" class="col-sm-2 control-label">Fecha</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->dateField(["date", "size" => 30, "class" => "form-control", "id" => "fieldDate"]) ?>
+    </div>
+</div>
+
+
+
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(["Guardar", "class" => "btn btn-success"]) ?>
+    </div>
+</div>
+
+        <?php echo $this->tag->endForm(); ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

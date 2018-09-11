@@ -1,0 +1,155 @@
+<?php
+  /**
+   * @var \Phalcon\Mvc\View\Engine\Php $this
+   */
+  ?>
+<?php use Phalcon\Tag; ?>
+
+<style>
+ table {
+  table-layout: fixed;
+  width: 100%;
+  }
+  td {
+  }
+
+</style>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+    <?php echo $this->getContent(); ?>
+    </div>
+    <div class="col-md-12 col-sm-12">
+    
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Extensión</h4>
+          <hr>
+          <?php
+          echo $this->tag->linkTo(array('extension/new', "<i class='fas fa-plus-circle' style='color:green'>Crear nueva</i>"));
+          ?>       
+         
+        </div>
+        
+        <div class="content  ">
+          
+        <table class="table table-hover">
+            <thead>
+              <tr class="info">
+                <th  class="text-center">#</th>
+                <th  class="text-center">Nombre</th>
+                <th  class="text-center">Coordinador</th>
+                <th  class="text-center">Tipo</th>
+                <th  class="text-center">Dirigido a</th>
+                <th  class="text-center">Ver</th>
+                <th  class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($page->items as $extension): ?>
+              <tr>
+                <td class="text-center"><?php echo $extension->id ?></td>
+                <td class="text-center"><?php echo $extension->name ?></td>
+                <td class="text-center"><?php echo $extension->Person->name?></td>
+                <td class="text-center"><?php echo $extension->ExtensionType->name?></td>
+                <td class="text-center"><?php echo $extension->users ?></td>
+                <td class="text-center">
+                  <i class="extension_view pe-7s-search" id= "<?php echo $extension->id ?>" style="cursor:pointer"></i>
+                </td>
+                <td class="text-center">
+                  <?php echo $this->tag->linkTo(["extension/edit/" . $extension->id, "Editar"]); ?>
+                </td>
+              </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col-sm-1">
+              <p class="pagination" style="line-height: 1.42857;padding: 6px 12px;">
+                <?php echo $page->current, "/", $page->total_pages ?>
+              </p>
+            </div>
+            <div class="col-sm-11">
+              <nav>
+                <ul class="pagination">
+                  <li>
+                    <?php echo $this->tag->linkTo("extension/search", "Primero") ?>
+                  </li>
+                  <li>
+                    <?php echo $this->tag->linkTo("extension/search?page=" . $page->before, "Anterior") ?>
+                  </li>
+                  <li>
+                    <?php echo $this->tag->linkTo("extension/search?page=" . $page->next, "Siguiente") ?>
+                  </li>
+                  <li>
+                    <?php echo $this->tag->linkTo("extension/search?page=" . $page->last, "Último") ?>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modal_extension_project_view" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.1);">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Proyectos de extensión</h4>
+        </div>
+        <div class="modal-body">
+        <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Año</th>
+        <th>Proyectos</th>
+        <th>Fuente de financiación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>2018</td>
+        <td>3</td>
+        <td>Propia</td>
+      </tr>
+      
+    </tbody>
+  </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+$( document ).ready(function(){
+
+  $('.extension_view').click(function(){
+    var id = $(this).attr('id');
+    $('#modal_extension_project_view').modal('toggle');
+    
+
+  });
+
+
+
+  
+});
+
+</script>

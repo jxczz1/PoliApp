@@ -1,0 +1,95 @@
+<?php
+  /**
+   * @var \Phalcon\Mvc\View\Engine\Php $this
+   */
+  ?>
+<?php use Phalcon\Tag; ?>
+
+<style>
+ table {
+  table-layout: fixed;
+  width: 100%;
+  }
+  td {
+  }
+
+</style>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+    <?php echo $this->getContent(); ?>
+    </div>
+    <div class="col-md-12 col-sm-12">
+    
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Reportes</h4>
+          <hr>         
+        </div>        
+        <div class="content  ">     
+        <?php
+                echo $this->tag->form(
+                    [
+                        "enterprise/search",
+                        "autocomplete" => "off",
+                        "id" => "searchForm"
+                    ]
+                );
+                echo $this->tag->hiddenField(["page", "type" => "hidden", "id" => "fieldPage"]);
+            ?>    
+            <div class="row">                 
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="fieldName">Nombre</label>
+                            <?php echo $this->tag->textField(["name", "size" => 30, "class" => "form-control", "id" => "fieldName"]) ?>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="fieldNit">NIT</label>
+                            <?php echo $this->tag->textField(["nit", "size" => 30, "class" => "form-control", "id" => "fieldNit"]) ?>
+                        </div>
+                    </div>                    
+                </div> 
+        <table class="table table-hover">
+            <thead>
+              <tr class="info">
+                <th  class="text-center">ID</th>
+              </tr>
+            </thead>
+            <tbody>
+             
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col-sm-1">
+              <p class="pagination" style="line-height: 1.42857;padding: 6px 12px;">
+                <?php echo $page->current, "/", $page->total_pages ?>
+              </p>
+            </div>
+            <div class="col-sm-11">
+              <nav>
+                <ul class="pagination">
+                  <li>
+                    <?php echo $this->tag->linkTo("reports/index", "Primero") ?>
+                  </li>
+                  <li>
+                    <?php echo $this->tag->linkTo("reports/index?page=" . $page->before, "Anterior") ?>
+                  </li>
+                  <li>
+                    <?php echo $this->tag->linkTo("reports/index?page=" . $page->next, "Siguiente") ?>
+                  </li>
+                  <li>
+                    <?php echo $this->tag->linkTo("reports/index?page=" . $page->last, "Último") ?>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

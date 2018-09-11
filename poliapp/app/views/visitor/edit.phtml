@@ -1,0 +1,84 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="row">
+    <nav>
+        <ul class="pager">
+            <li class="previous"><?php echo $this->tag->linkTo(["visitor", "Back"]) ?></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="page-header">
+    <h1>
+        Edit visitor
+    </h1>
+</div>
+
+<?php echo $this->getContent(); ?>
+
+<?php
+    echo $this->tag->form(
+        [
+            "visitor/save",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        ]
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldId" class="col-sm-2 control-label">Id</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["id", "type" => "number", "class" => "form-control", "id" => "fieldId"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldObjective" class="col-sm-2 control-label">Objective</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["objective", "size" => 30, "class" => "form-control", "id" => "fieldObjective"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldArrivalDate" class="col-sm-2 control-label">Arrival Of Date</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["arrival_date", "size" => 30, "class" => "form-control", "id" => "fieldArrivalDate"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldDepartureDate" class="col-sm-2 control-label">Departure Of Date</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["departure_date", "size" => 30, "class" => "form-control", "id" => "fieldDepartureDate"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldIdVisitorPerson" class="col-sm-2 control-label">Id Of Visitor Of Person</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["id_visitor_person", "type" => "number", "class" => "form-control", "id" => "fieldIdVisitorPerson"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldIdProgram" class="col-sm-2 control-label">Id Of Program</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["id_program", "type" => "number", "class" => "form-control", "id" => "fieldIdProgram"]) ?>
+    </div>
+</div>
+
+
+<?php echo $this->tag->hiddenField("id") ?>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(["Save", "class" => "btn btn-default"]) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

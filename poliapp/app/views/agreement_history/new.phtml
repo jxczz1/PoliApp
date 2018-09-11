@@ -1,0 +1,61 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="row">
+    <nav>
+        <ul class="pager">
+            <li class="previous"><?php echo $this->tag->linkTo(["agreement_history", "Go Back"]) ?></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="page-header">
+    <h1>
+        Create agreement_history
+    </h1>
+</div>
+
+<?php echo $this->getContent(); ?>
+
+<?php
+    echo $this->tag->form(
+        [
+            "agreement_history/create",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        ]
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldDate" class="col-sm-2 control-label">Date</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["date", "size" => 30, "class" => "form-control", "id" => "fieldDate"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldAchievement" class="col-sm-2 control-label">Achievement</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["achievement", "size" => 30, "class" => "form-control", "id" => "fieldAchievement"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldIdAgreement" class="col-sm-2 control-label">Id Of Agreement</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["id_agreement", "type" => "number", "class" => "form-control", "id" => "fieldIdAgreement"]) ?>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(["Save", "class" => "btn btn-default"]) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

@@ -1,0 +1,90 @@
+<?php ?>
+
+
+<div class="container-fluid">
+
+
+  <div class="row">      
+    <div class="col-md-6 col-sm-12">    
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Extensión <i class="pe-7s-study" style="float:right"></i></h4>
+          <hr>
+          <strong>Total : <?php echo $data->extensions->total ?></strong>  
+        </div>        
+        <div class="content  ">          
+        <p>Últimos proyectos</p>
+        <ul style="list-style-type:disc">
+        <?php foreach($data->extensions->data as $extension): ?>
+            <li> <?php echo $extension->name; ?> </li>
+        <?php endforeach; ?>
+        </ul>   
+        </div>
+      </div>
+    </div>
+     <div class="col-md-6 col-sm-12">    
+      <div class="card">
+        <div class="header">
+        <h4 class="title">Visitantes <i class="pe-7s-users" style="float:right"></i></h4>
+        
+          <hr>
+          <strong>Total : <?php echo $data->visitors->total ?></strong>   
+        </div>        
+        <div class="content  ">          
+        <p>Últimos visitantes</p>
+        <ul style="list-style-type:disc">
+        <?php foreach($data->visitors->data as $visitor): ?>
+            <li> <?php 
+                $person = Person::findFirst($visitor->id_visitor_person); 
+                echo $person->name;
+                echo " [ ".$person->Program->Entity->name . " ] ";
+                ?> </li>
+        <?php endforeach; ?>
+        </ul>             
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+  <div class="col-md-6 col-sm-12">    
+      <div class="card">
+        <div class="header">
+            <h4 class="title">Convenios <i class="pe-7s-share" style="float:right"></i></h4>
+         <hr>
+         <strong>Total : <?php echo $data->agreements->total ?></strong>   
+        </div>        
+        <div class="content  ">          
+        <ul style="list-style-type:disc">
+        <?php foreach($data->agreements->data as $agreement): ?>
+            <li> <?php echo $agreement->name; ?> </li>
+        <?php endforeach; ?>
+        </ul>               
+        </div>
+      </div>
+    </div>
+
+     <div class="col-md-6 col-sm-12">    
+      <div class="card">
+        <div class="header">
+        <h4 class="title">Innovaciones <i class="pe-7s-rocket" style="float:right"></i></h4>
+        
+          <hr>
+          <strong>Total : <?php echo $data->innovations->total ?></strong>     
+        </div>        
+        <div class="content  ">          
+        <ul style="list-style-type:disc">
+        <?php foreach($data->innovations->data as $innovation): ?>
+            <li> <?php echo $innovation->name; ?> </li>
+        <?php endforeach; ?>
+        </ul>               
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+
+
+

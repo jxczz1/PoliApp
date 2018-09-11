@@ -1,0 +1,55 @@
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <br>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">POLI APP</h5>    
+                <hr>
+                <?php echo $this->tag->form(
+                        array(
+                            "session",
+                            "autocomplete" => "off",
+                            "class" => "form-horizontal",
+                        )
+                    );
+                    ?>           
+                <div class="row">
+                    <div class="col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
+                    <div class="form-group">
+                        <label for="fieldUser">Usuario</label>
+                        <?php echo $this->tag->textField(array("user", "size" => 30, "type" => "email", "placeholder" => "Usuario", "class" => "form-control", "id" => "fieldUser")) ?>
+                          
+                    </div>
+                    <div class="form-group">
+                        <label for="fieldPassword">Contraseña</label>
+                        <?php echo $this->tag->passwordField(array("password", "size" => 30, "type" => "password", "placeholder" => "******", "class" => "form-control", "id" => "fieldPassword")) ?>
+                       
+                    </div>
+                    <?php echo $this->getContent(); ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="">
+                        <?php echo $this->tag->submitButton(["Iniciar sesión", "class" => "btn btn-primary"]) ?>
+                    </div>
+                </div>
+                <?php echo $this->tag->endForm(); ?>
+            </div>
+
+            <div class="card-footer">
+                
+
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        
+                        <table class="table">
+                            
+                        </tbody>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

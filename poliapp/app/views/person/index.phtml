@@ -1,0 +1,63 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="page-header">
+    <h1>
+        Search person
+    </h1>
+    <p>
+        <?php echo $this->tag->linkTo(["person/new", "Create person"]) ?>
+    </p>
+</div>
+
+<?php echo $this->getContent() ?>
+
+<?php
+    echo $this->tag->form(
+        [
+            "person/search",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        ]
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldId" class="col-sm-2 control-label">Id</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["id", "type" => "number", "class" => "form-control", "id" => "fieldId"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldName" class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["name", "size" => 30, "class" => "form-control", "id" => "fieldName"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldIdRole" class="col-sm-2 control-label">Id Of Role</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["id_role", "type" => "number", "class" => "form-control", "id" => "fieldIdRole"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldIdProgram" class="col-sm-2 control-label">Id Of Program</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["id_program", "type" => "number", "class" => "form-control", "id" => "fieldIdProgram"]) ?>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(["Search", "class" => "btn btn-default"]) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>
